@@ -81,13 +81,6 @@
     ; inter-provincial connections
     (connected pp1 pp2) (connected pp2 pp1)
     (connected pp3 pp4) (connected pp4 pp3)
-    ; inter-health districts connections
-    (connected hd1 hd2) (connected hd2 hd1)
-    (connected hd5 hd6) (connected hd6 hd5)
-    (connected hd5 hd7) (connected hd7 hd5)
-    (connected hd6 hd7) (connected hd7 hd6)
-    (connected hd8 hd9) (connected hd9 hd8)
-    (connected hd10 hd9) (connected hd9 hd10)
 
     ; TRANPORT MEANS
     ; airports
