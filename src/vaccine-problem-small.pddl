@@ -44,11 +44,21 @@
     (isHDDC hd1) (isHDDC hd2) (isHDDC hd3) (isHDDC hd4)
     (isHDDC hd5) (isHDDC hd6) (isHDDC hd7) (isHDDC hd8)
     (isHDDC hd9) (isHDDC hd10)
+
+    ; LINKS
+    (link rp1 cp) (link rp2 cp) (link rp3 cp)
+    (link pp1 rp1) (link pp2 rp1)
+    (link pp3 rp2) (link pp4 rp2)
+    (link pp5 rp3)
+    (link hd1 pp1) (link hd2 pp1) (link hd3 pp2)
+    (link hd4 pp3)
+    (link hd5 pp4) (link hd6 pp4) (link hd7 pp4)
+    (link hd8 pp5) (link hd9 pp5) (link hd10 pp5)
     
     ; CONNECTIONS
     ; from central point to regional points
     (connected cp rp2) (connected rp2 cp)
-    (connected cp rp3) (connected rp3 cp)
+    (connected cp pp5) (connected pp5 cp)
     ; from regional points to provincial points
     (connected rp1 pp1) (connected pp1 rp1)
     (connected rp1 pp2) (connected pp2 rp1)
@@ -73,7 +83,6 @@
     (connected pp3 pp4) (connected pp4 pp3)
     ; inter-health districts connections
     (connected hd1 hd2) (connected hd2 hd1)
-    (connected hd4 hd5) (connected hd5 hd4)
     (connected hd5 hd6) (connected hd6 hd5)
     (connected hd5 hd7) (connected hd7 hd5)
     (connected hd6 hd7) (connected hd7 hd6)
@@ -88,9 +97,9 @@
     (plane plane1) (at plane1 cp) (= (capacity plane1) 0)
     ; trucks
     (transport truck1) (transport truck2) (transport truck3)
-    (truck truck1) (at truck1 cp) (= (capacity truck1) 0)
-    (truck truck2) (at truck2 rp1) (= (capacity truck2) 0)
-    (truck truck3) (at truck3 rp2) (= (capacity truck3) 0)
+    (truck truck1) (at truck1 rp1) (= (capacity truck1) 0)
+    (truck truck2) (at truck2 rp2) (= (capacity truck2) 0)
+    (truck truck3) (at truck3 cp) (= (capacity truck3) 0)
     ; drones
     (transport drone1) (transport drone2) (transport drone3)
     (drone drone1) (at drone1 pp1) (= (capacity drone1) 0)
@@ -106,6 +115,11 @@
     ; where
     (at vb1 cp) (at vb2 cp) (at vb3 cp) (at vb4 cp) (at vb5 cp)
     (at vb6 cp) (at vb7 cp) (at vb8 cp) (at vb9 cp) (at vb10 cp)
+    ; constrains
+    (reachCDP vb1 cp) (reachCDP vb2 cp) (reachCDP vb3 cp)
+    (reachCDP vb4 cp) (reachCDP vb5 cp) (reachCDP vb6 cp)
+    (reachCDP vb7 cp) (reachCDP vb8 cp) (reachCDP vb9 cp)
+    (reachCDP vb10 cp)
   )
 
   ; The goal state describe what we desire to achieve
