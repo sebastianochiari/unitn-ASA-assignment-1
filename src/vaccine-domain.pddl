@@ -8,9 +8,8 @@
     :strips                 ; basic preconditions and effects
     :negative-preconditions ; to use not in preconditions
     :equality               ; to use = in preconditions
-    :disjunctive-preconditions
-    :fluents
-    :adl
+    :disjunctive-preconditions ; to use or in preconditions
+    :adl ; to use when in effects
   )
 
   ; Define the relations
@@ -132,7 +131,7 @@
   )
   
   ; move a drone to another province of the same region
-  (:action recollocateDrone
+  (:action relocateDrone
       :parameters (?drone ?pointA ?pointB ?region)
       :precondition (and
         (drone ?drone)

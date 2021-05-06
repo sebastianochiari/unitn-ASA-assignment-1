@@ -1,0 +1,15 @@
+frosinone latina rieti roma2 viterbo perugia terni
+catanzaro cosenza crotone reggiocalabria2 vibovalentia corigliano
+avellino benevento caserta napoli2 salerno matera potenza
+chieti aquila2 pescara teramo campobasso isernia termoli
+bari2 barletta brindisi foggia lecce taranto
+agrigento caltanissetta catania enna messina palermo2 ragusa siracusa trapani
+aosta alessandria asti biella cuneo novara torino2 verbano vercelli
+arezzo firenze2 grosseto livorno lucca pisa pistoia prato siena
+ancona2 ascoli fermo macerata pesaro urbino
+genova2 imperia spezia savona massa sanremo
+venezia2 treviso rovigo vicenza verona padova
+trieste2 gorizia udine pordenone belluno trento bolzano
+bergamo brescia como cremona lecco lodi mantova milano2 monza pavia sondrio varese
+bologna2 ferrara forli modena parma piacenza ravenna reggioemilia rimini
+cagliari2 nuoro oristano sassari olbia carbonia
