@@ -1,14 +1,27 @@
 import random
 
-CENTRALPOINT = 'ROMA'
-NPLANES = 10
-NTRUCKS = 22
-NDRONES = 78
-NVACCINEBOXES = 412
 TWOTABS = '\t\t'
 THREETABS = '\t\t\t'
 FOURTABS = '\t\t\t\t'
 FIVETABS = '\t\t\t\t\t'
+
+# PROBLEM = 'full'
+PROBLEM = 'small'
+
+CENTRALPOINT = 'ROMA'
+
+if (PROBLEM == 'small'):
+    NPLANES = 3
+    NTRUCKS = 5
+    NDRONES = 18
+    NVACCINEBOXES = 103
+    FOLDER = './small'
+elif (PROBLEM == 'full'):
+    NPLANES = 10
+    NTRUCKS = 22
+    NDRONES = 78
+    NVACCINEBOXES = 412
+    FOLDER = './full\'
 
 def read_file(file_to_read):
     return [line.strip().split() for line in open(file_to_read, 'r')]
@@ -238,28 +251,28 @@ def generate_goal(file_to_write, hd):
 
 def main():
 
-    regions = read_file('regions.txt')
-    provinces = read_file('provinces.txt')
-    health_districts = read_file('healthdistricts.txt')
-    airports = read_file('airports.txt')
-    drones = read_file('drones.txt')
+    regions = read_file(FOLDER + 'regions.txt')
+    provinces = read_file(FOLDER + 'provinces.txt')
+    health_districts = read_file(FOLDER + 'healthdistricts.txt')
+    airports = read_file(FOLDER + 'airports.txt')
+    drones = read_file(FOLDER + 'drones.txt')
 
-    log = open('problem.pddl', 'w')
+    log = open(FOLDER + 'problem.pddl', 'w')
 
     write_header(log)
-    write_objects_header(log)
-    generate_objects(log, regions, provinces, health_districts)
-    write_init_header(log)
-    generate_locations(log, regions, provinces, health_districts)
-    generate_links(log, regions, provinces, health_districts)
-    generate_connections(log, regions, provinces, health_districts)
-    generate_transport_means_header(log)
-    generate_airports(log, airports)
-    generate_trucks(log, airports)
-    generate_drones(log, provinces, health_districts, drones)
-    generate_vaccineboxes(log)
-    generate_goal_header(log)
-    generate_goal(log, health_districts)
+    # write_objects_header(log)
+    # generate_objects(log, regions, provinces, health_districts)
+    # write_init_header(log)
+    # generate_locations(log, regions, provinces, health_districts)
+    # generate_links(log, regions, provinces, health_districts)
+    # generate_connections(log, regions, provinces, health_districts)
+    # generate_transport_means_header(log)
+    # generate_airports(log, airports)
+    # generate_trucks(log, airports)
+    # generate_drones(log, provinces, health_districts, drones)
+    # generate_vaccineboxes(log)
+    # generate_goal_header(log)
+    # generate_goal(log, health_districts)
     log.close()
 
 if __name__ == "__main__":
