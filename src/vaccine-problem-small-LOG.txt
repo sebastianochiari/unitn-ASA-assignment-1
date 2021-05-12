@@ -1,118 +1,283 @@
-0: MOVE TRUCK3 CP RP2
-1: LOAD VB10 PLANE1 CP
-2: MOVE PLANE1 CP RP1
-3: UNLOAD VB10 PLANE1 RP1 CP
-4: LOAD VB10 TRUCK1 RP1
-5: MOVE TRUCK1 RP1 PP1
-6: MOVE TRUCK2 RP2 CP
-7: LOAD VB9 TRUCK2 CP
-8: MOVE TRUCK2 CP RP2
-9: UNLOAD VB9 TRUCK2 RP2 CP
-10: MOVE TRUCK2 RP2 CP
-11: LOAD VB8 TRUCK2 CP
-12: MOVE TRUCK2 CP PP5
-13: LOAD VB9 TRUCK3 RP2
-14: MOVE TRUCK3 RP2 PP3
-15: MOVE TRUCK2 PP5 RP3
-16: UNLOAD VB8 TRUCK2 RP3 CP
-17: LOAD VB8 TRUCK2 RP3
-18: MOVE TRUCK2 RP3 PP5
-19: UNLOAD VB8 TRUCK2 PP5 RP3
-20: LOAD VB8 DRONE3 PP5
-21: MOVE TRUCK3 PP3 PP4
-22: UNLOAD VB9 TRUCK3 PP4 RP2
-23: MOVE TRUCK2 PP5 CP
-24: LOAD VB1 TRUCK2 CP
-25: MOVE TRUCK2 CP RP2
-26: UNLOAD VB1 TRUCK2 RP2 CP
-27: LOAD VB1 TRUCK2 RP2
-28: MOVE TRUCK2 RP2 PP3
-29: UNLOAD VB1 TRUCK2 PP3 RP2
-30: LOAD VB9 DRONE2 PP4
-31: UNLOAD VB10 TRUCK1 PP1 RP1
-32: MOVE PLANE1 RP1 CP
-33: LOAD VB2 PLANE1 CP
-34: MOVE PLANE1 CP RP1
-35: UNLOAD VB2 PLANE1 RP1 CP
-36: MOVE TRUCK1 PP1 RP1
-37: LOAD VB2 TRUCK1 RP1
-38: MOVE TRUCK1 RP1 PP2
-39: UNLOAD VB2 TRUCK1 PP2 RP1
-40: LOAD VB10 DRONE1 PP1
-41: MOVE DRONE1 PP1 HD1
-42: UNLOAD VB10 DRONE1 HD1 PP1
-43: MOVE PLANE1 RP1 CP
-44: LOAD VB3 PLANE1 CP
-45: MOVE PLANE1 CP RP1
-46: UNLOAD VB3 PLANE1 RP1 CP
-47: MOVE TRUCK1 PP2 RP1
-48: LOAD VB3 TRUCK1 RP1
-49: MOVE TRUCK1 RP1 PP1
-50: UNLOAD VB3 TRUCK1 PP1 RP1
-51: MOVE DRONE1 HD1 PP1
-52: LOAD VB3 DRONE1 PP1
-53: MOVE DRONE1 PP1 HD2
-54: UNLOAD VB3 DRONE1 HD2 PP1
-55: MOVE DRONE1 HD2 PP1
-56: RECOLLOCATEDRONE DRONE1 PP1 PP2 RP1
-57: LOAD VB2 DRONE1 PP2
-58: MOVE DRONE1 PP2 HD3
-59: UNLOAD VB2 DRONE1 HD3 PP2
-60: MOVE DRONE2 PP4 HD5
-61: UNLOAD VB9 DRONE2 HD5 PP4
-62: MOVE DRONE2 HD5 PP4
-63: MOVE TRUCK2 PP3 RP2
-64: MOVE TRUCK2 RP2 CP
-65: LOAD VB4 TRUCK2 CP
-66: MOVE TRUCK2 CP RP2
-67: UNLOAD VB4 TRUCK2 RP2 CP
-68: LOAD VB4 TRUCK2 RP2
-69: MOVE TRUCK2 RP2 PP4
-70: UNLOAD VB4 TRUCK2 PP4 RP2
-71: LOAD VB4 DRONE2 PP4
-72: MOVE DRONE2 PP4 HD6
-73: UNLOAD VB4 DRONE2 HD6 PP4
-74: MOVE DRONE2 HD6 PP4
-75: MOVE TRUCK2 PP4 RP2
-76: MOVE TRUCK2 RP2 CP
-77: LOAD VB5 TRUCK2 CP
-78: MOVE TRUCK2 CP RP2
-79: UNLOAD VB5 TRUCK2 RP2 CP
-80: LOAD VB5 TRUCK2 RP2
-81: MOVE TRUCK2 RP2 PP4
-82: UNLOAD VB5 TRUCK2 PP4 RP2
-83: LOAD VB5 DRONE2 PP4
-84: MOVE DRONE2 PP4 HD7
-85: UNLOAD VB5 DRONE2 HD7 PP4
-86: MOVE DRONE2 HD7 PP4
-87: RECOLLOCATEDRONE DRONE2 PP4 PP3 RP2
-88: LOAD VB1 DRONE2 PP3
-89: MOVE DRONE2 PP3 HD4
-90: UNLOAD VB1 DRONE2 HD4 PP3
-91: MOVE DRONE3 PP5 HD8
-92: UNLOAD VB8 DRONE3 HD8 PP5
-93: MOVE TRUCK2 PP4 RP2
-94: MOVE TRUCK2 RP2 CP
-95: LOAD VB7 TRUCK2 CP
-96: MOVE TRUCK2 CP RP2
-97: MOVE TRUCK2 RP2 RP3
-98: UNLOAD VB7 TRUCK2 RP3 CP
-99: LOAD VB7 TRUCK2 RP3
-100: MOVE TRUCK2 RP3 PP5
-101: UNLOAD VB7 TRUCK2 PP5 RP3
-102: MOVE DRONE3 HD8 PP5
-103: LOAD VB7 DRONE3 PP5
-104: MOVE DRONE3 PP5 HD9
-105: UNLOAD VB7 DRONE3 HD9 PP5
-106: MOVE TRUCK2 PP5 CP
-107: LOAD VB6 TRUCK2 CP
-108: MOVE TRUCK2 CP RP2
-109: MOVE TRUCK2 RP2 RP3
-110: UNLOAD VB6 TRUCK2 RP3 CP
-111: LOAD VB6 TRUCK2 RP3
-112: MOVE TRUCK2 RP3 PP5
-113: UNLOAD VB6 TRUCK2 PP5 RP3
-114: MOVE DRONE3 HD9 PP5
-115: LOAD VB6 DRONE3 PP5
-116: MOVE DRONE3 PP5 HD10
-117: UNLOAD VB6 DRONE3 HD10 PP5
+ff: parsing domain file
+domain 'VACCINE-DISTRIBUTION' defined
+ ... done.
+ff: parsing problem file
+problem 'SMALL-VACCINE-DISTRIBUTION' defined
+ ... done.
+
+
+translating negated cond for predicate DRONELOADED
+translating negated cond for predicate ISHDDC
+translating negated cond for predicate GETTORDC
+translating negated cond for predicate GETTOPDC
+translating negated cond for predicate REACHHDDC
+no metric specified.
+
+ff: search configuration is Enforced Hill-Climbing, if that fails then best-first search.
+Metric is plan length.
+NO COST MINIMIZATION (and no cost-minimizing relaxed plans).
+
+Cueing down from goal distance:   64 into depth [1]
+                                  63            [1]
+                                  59            [1]
+                                  58            [1]
+                                  57            [1]
+                                  56            [1]
+                                  54            [1]
+                                  53            [1][2][3][4][5]
+                                  52            [1][2]
+                                  51            [1][2][3][4]
+                                  50            [1]
+                                  49            [1][2][3][4][5][6][7][8]
+                                  48            [1]
+                                  47            [1]
+                                  46            [1][2][3][4][5][6][7][8][9]
+                                  45            [1][2][3]
+                                  44            [1][2][3][4][5][6][7][8][9][10]
+                                  43            [1][2]
+                                  42            [1]
+                                  41            [1][2][3][4][5][6][7][8][9][10]
+                                  40            [1]
+                                  39            [1]
+                                  38            [1][2][3][4][5][6][7][8][9][10][11]
+                                  37            [1]
+                                  36            [1][2]
+                                  35            [1]
+                                  34            [1]
+                                  33            [1]
+                                  32            [1]
+                                  31            [1]
+                                  30            [1][2][3][4][5][6][7][8][9][10][11][12]
+                                  29            [1]
+                                  28            [1][2][3][4][5][6][7][8][9][10][11]
+                                  27            [1]
+                                  26            [1][2]
+                                  25            [1]
+                                  24            [1]
+                                  23            [1]
+                                  22            [1][2][3][4][5][6][7][8][9][10][11]
+                                  21            [1]
+                                  20            [1]
+                                  19            [1]
+                                  18            [1][2][3][4][5][6][7][8][9][10][11]
+                                  17            [1]
+                                  16            [1][2][3][4][5][6][7][8][9][10][11][12][13]
+                                  15            [1]
+                                  14            [1][2]
+                                  13            [1]
+                                  12            [1]
+                                  11            [1]
+                                  10            [1][2][3][4][5][6][7][8][9][10][11][12][13]
+                                   9            [1]
+                                   8            [1][2]
+                                   7            [1]
+                                   6            [1]
+                                   5            [1]
+                                   4            [1][2][3][4][5][6][7][8][9][10][11][12][13]
+                                   3            [1]
+                                   2            [1]
+                                   1            [1]
+                                   0            
+
+ff: found legal plan as follows
+step    0: LOAD VB15 PLANE1 ROMA
+        1: MOVE PLANE1 ROMA CAGLIARI
+        2: UNLOAD VB15 PLANE1 CAGLIARI ROMA
+        3: LOAD VB15 TRUCK3 CAGLIARI
+        4: MOVE TRUCK3 CAGLIARI ORISTANO
+        5: LOAD VB1 TRUCK1 ROMA
+        6: MOVE TRUCK1 ROMA ROMA1
+        7: UNLOAD VB1 TRUCK1 ROMA1 ROMA
+        8: MOVE TRUCK1 ROMA1 ROMA
+        9: LOAD VB2 TRUCK1 ROMA
+       10: MOVE TRUCK1 ROMA ROMA1
+       11: LOAD VB1 TRUCK1 ROMA1
+       12: MOVE TRUCK1 ROMA1 NAPOLI
+       13: UNLOAD VB2 TRUCK1 NAPOLI ROMA
+       14: MOVE TRUCK1 NAPOLI ROMA1
+       15: MOVE TRUCK1 ROMA1 LATINA
+       16: LOAD VB2 TRUCK2 NAPOLI
+       17: UNLOAD VB1 TRUCK1 LATINA ROMA1
+       18: MOVE TRUCK1 LATINA ROMA1
+       19: MOVE TRUCK1 ROMA1 ROMA
+       20: LOAD VB3 TRUCK1 ROMA
+       21: MOVE TRUCK1 ROMA ROMA1
+       22: UNLOAD VB3 TRUCK1 ROMA1 ROMA
+       23: LOAD VB3 TRUCK1 ROMA1
+       24: MOVE TRUCK1 ROMA1 FROSINONE
+       25: UNLOAD VB3 TRUCK1 FROSINONE ROMA1
+       26: LOAD VB1 DRONE1 LATINA
+       27: MOVE TRUCK2 NAPOLI AVELLINO
+       28: UNLOAD VB2 TRUCK2 AVELLINO NAPOLI
+       29: MOVE TRUCK1 FROSINONE ROMA1
+       30: MOVE TRUCK1 ROMA1 ROMA
+       31: LOAD VB4 TRUCK1 ROMA
+       32: MOVE TRUCK1 ROMA ROMA1
+       33: MOVE TRUCK1 ROMA1 NAPOLI
+       34: UNLOAD VB4 TRUCK1 NAPOLI ROMA
+       35: LOAD VB4 TRUCK1 NAPOLI
+       36: MOVE TRUCK1 NAPOLI SALERNO
+       37: RELOCATEDRONE DRONE2 CASERTA AVELLINO NAPOLI
+       38: LOAD VB2 DRONE2 AVELLINO
+       39: MOVE TRUCK3 ORISTANO NUORO
+       40: UNLOAD VB15 TRUCK3 NUORO CAGLIARI
+       41: LOAD VB15 DRONE3 NUORO
+       42: MOVE PLANE1 CAGLIARI ROMA
+       43: LOAD VB14 PLANE1 ROMA
+       44: MOVE PLANE1 ROMA CAGLIARI
+       45: UNLOAD VB14 PLANE1 CAGLIARI ROMA
+       46: MOVE TRUCK3 NUORO ORISTANO
+       47: MOVE TRUCK3 ORISTANO CAGLIARI
+       48: LOAD VB14 TRUCK3 CAGLIARI
+       49: MOVE TRUCK3 CAGLIARI ORISTANO
+       50: MOVE DRONE3 NUORO MACOMER
+       51: UNLOAD VB14 TRUCK3 ORISTANO CAGLIARI
+       52: MOVE DRONE2 AVELLINO TAURASI
+       53: UNLOAD VB4 TRUCK1 SALERNO NAPOLI
+       54: MOVE TRUCK1 SALERNO NAPOLI
+       55: MOVE TRUCK1 NAPOLI ROMA1
+       56: MOVE TRUCK1 ROMA1 ROMA
+       57: LOAD VB5 TRUCK1 ROMA
+       58: MOVE TRUCK1 ROMA ROMA1
+       59: MOVE TRUCK1 ROMA1 NAPOLI
+       60: UNLOAD VB5 TRUCK1 NAPOLI ROMA
+       61: LOAD VB5 TRUCK1 NAPOLI
+       62: MOVE TRUCK1 NAPOLI CASERTA
+       63: UNLOAD VB5 TRUCK1 CASERTA NAPOLI
+       64: UNLOAD VB15 DRONE3 MACOMER NUORO
+       65: MOVE DRONE3 MACOMER NUORO
+       66: MOVE PLANE1 CAGLIARI ROMA
+       67: LOAD VB6 PLANE1 ROMA
+       68: MOVE PLANE1 ROMA CAGLIARI
+       69: UNLOAD VB6 PLANE1 CAGLIARI ROMA
+       70: MOVE TRUCK3 ORISTANO CAGLIARI
+       71: LOAD VB6 TRUCK3 CAGLIARI
+       72: MOVE TRUCK3 CAGLIARI ORISTANO
+       73: MOVE TRUCK3 ORISTANO NUORO
+       74: UNLOAD VB6 TRUCK3 NUORO CAGLIARI
+       75: LOAD VB6 DRONE3 NUORO
+       76: MOVE DRONE3 NUORO FONNI
+       77: UNLOAD VB6 DRONE3 FONNI NUORO
+       78: MOVE DRONE3 FONNI NUORO
+       79: RELOCATEDRONE DRONE3 NUORO ORISTANO CAGLIARI
+       80: LOAD VB14 DRONE3 ORISTANO
+       81: MOVE DRONE3 ORISTANO CABRAS
+       82: UNLOAD VB14 DRONE3 CABRAS ORISTANO
+       83: MOVE DRONE1 LATINA APRILIA
+       84: UNLOAD VB1 DRONE1 APRILIA LATINA
+       85: MOVE TRUCK1 CASERTA NAPOLI
+       86: MOVE TRUCK1 NAPOLI ROMA1
+       87: MOVE TRUCK1 ROMA1 ROMA
+       88: LOAD VB7 TRUCK1 ROMA
+       89: MOVE TRUCK1 ROMA ROMA1
+       90: UNLOAD VB7 TRUCK1 ROMA1 ROMA
+       91: LOAD VB7 TRUCK1 ROMA1
+       92: MOVE TRUCK1 ROMA1 LATINA
+       93: UNLOAD VB7 TRUCK1 LATINA ROMA1
+       94: MOVE DRONE1 APRILIA LATINA
+       95: LOAD VB7 DRONE1 LATINA
+       96: MOVE DRONE1 LATINA TERRACINA
+       97: UNLOAD VB7 DRONE1 TERRACINA LATINA
+       98: MOVE TRUCK1 LATINA ROMA1
+       99: MOVE TRUCK1 ROMA1 ROMA
+      100: LOAD VB8 TRUCK1 ROMA
+      101: MOVE TRUCK1 ROMA ROMA1
+      102: UNLOAD VB8 TRUCK1 ROMA1 ROMA
+      103: LOAD VB8 TRUCK1 ROMA1
+      104: MOVE TRUCK1 ROMA1 LATINA
+      105: UNLOAD VB8 TRUCK1 LATINA ROMA1
+      106: MOVE DRONE1 TERRACINA LATINA
+      107: LOAD VB8 DRONE1 LATINA
+      108: MOVE DRONE1 LATINA FONDI
+      109: UNLOAD VB8 DRONE1 FONDI LATINA
+      110: MOVE DRONE1 FONDI LATINA
+      111: RELOCATEDRONE DRONE1 LATINA FROSINONE ROMA1
+      112: LOAD VB3 DRONE1 FROSINONE
+      113: MOVE DRONE1 FROSINONE CECCANO
+      114: UNLOAD VB3 DRONE1 CECCANO FROSINONE
+      115: MOVE DRONE1 CECCANO FROSINONE
+      116: MOVE TRUCK1 LATINA ROMA1
+      117: MOVE TRUCK1 ROMA1 ROMA
+      118: LOAD VB9 TRUCK1 ROMA
+      119: MOVE TRUCK1 ROMA ROMA1
+      120: UNLOAD VB9 TRUCK1 ROMA1 ROMA
+      121: LOAD VB9 TRUCK1 ROMA1
+      122: MOVE TRUCK1 ROMA1 FROSINONE
+      123: UNLOAD VB9 TRUCK1 FROSINONE ROMA1
+      124: LOAD VB9 DRONE1 FROSINONE
+      125: MOVE DRONE1 FROSINONE CASSINO
+      126: UNLOAD VB9 DRONE1 CASSINO FROSINONE
+      127: UNLOAD VB2 DRONE2 TAURASI AVELLINO
+      128: MOVE TRUCK1 FROSINONE ROMA1
+      129: MOVE DRONE2 TAURASI AVELLINO
+      130: MOVE TRUCK1 ROMA1 ROMA
+      131: LOAD VB10 TRUCK1 ROMA
+      132: MOVE TRUCK1 ROMA ROMA1
+      133: MOVE TRUCK1 ROMA1 NAPOLI
+      134: UNLOAD VB10 TRUCK1 NAPOLI ROMA
+      135: LOAD VB10 TRUCK1 NAPOLI
+      136: MOVE TRUCK1 NAPOLI AVELLINO
+      137: UNLOAD VB10 TRUCK1 AVELLINO NAPOLI
+      138: LOAD VB10 DRONE2 AVELLINO
+      139: MOVE DRONE2 AVELLINO ANDRETTA
+      140: UNLOAD VB10 DRONE2 ANDRETTA AVELLINO
+      141: MOVE DRONE2 ANDRETTA AVELLINO
+      142: MOVE TRUCK1 AVELLINO NAPOLI
+      143: MOVE TRUCK1 NAPOLI ROMA1
+      144: MOVE TRUCK1 ROMA1 ROMA
+      145: LOAD VB11 TRUCK1 ROMA
+      146: MOVE TRUCK1 ROMA ROMA1
+      147: MOVE TRUCK1 ROMA1 NAPOLI
+      148: UNLOAD VB11 TRUCK1 NAPOLI ROMA
+      149: LOAD VB11 TRUCK1 NAPOLI
+      150: MOVE TRUCK1 NAPOLI AVELLINO
+      151: UNLOAD VB11 TRUCK1 AVELLINO NAPOLI
+      152: LOAD VB11 DRONE2 AVELLINO
+      153: MOVE DRONE2 AVELLINO SOLOFRA
+      154: UNLOAD VB11 DRONE2 SOLOFRA AVELLINO
+      155: MOVE DRONE2 SOLOFRA AVELLINO
+      156: RELOCATEDRONE DRONE2 AVELLINO CASERTA NAPOLI
+      157: LOAD VB5 DRONE2 CASERTA
+      158: MOVE DRONE2 CASERTA MONDRAGONE
+      159: UNLOAD VB5 DRONE2 MONDRAGONE CASERTA
+      160: MOVE TRUCK1 AVELLINO NAPOLI
+      161: MOVE TRUCK1 NAPOLI ROMA1
+      162: MOVE TRUCK1 ROMA1 ROMA
+      163: LOAD VB12 TRUCK1 ROMA
+      164: MOVE TRUCK1 ROMA ROMA1
+      165: MOVE TRUCK1 ROMA1 NAPOLI
+      166: UNLOAD VB12 TRUCK1 NAPOLI ROMA
+      167: LOAD VB12 TRUCK1 NAPOLI
+      168: MOVE TRUCK1 NAPOLI CASERTA
+      169: UNLOAD VB12 TRUCK1 CASERTA NAPOLI
+      170: MOVE DRONE2 MONDRAGONE CASERTA
+      171: LOAD VB12 DRONE2 CASERTA
+      172: MOVE DRONE2 CASERTA AVERSA
+      173: UNLOAD VB12 DRONE2 AVERSA CASERTA
+      174: MOVE DRONE2 AVERSA CASERTA
+      175: RELOCATEDRONE DRONE2 CASERTA SALERNO NAPOLI
+      176: LOAD VB4 DRONE2 SALERNO
+      177: MOVE DRONE2 SALERNO BATTIPAGLIA
+      178: UNLOAD VB4 DRONE2 BATTIPAGLIA SALERNO
+      179: MOVE DRONE2 BATTIPAGLIA SALERNO
+      180: MOVE TRUCK1 CASERTA NAPOLI
+      181: MOVE TRUCK1 NAPOLI ROMA1
+      182: MOVE TRUCK1 ROMA1 ROMA
+      183: LOAD VB13 TRUCK1 ROMA
+      184: MOVE TRUCK1 ROMA ROMA1
+      185: MOVE TRUCK1 ROMA1 NAPOLI
+      186: UNLOAD VB13 TRUCK1 NAPOLI ROMA
+      187: LOAD VB13 TRUCK1 NAPOLI
+      188: MOVE TRUCK1 NAPOLI SALERNO
+      189: UNLOAD VB13 TRUCK1 SALERNO NAPOLI
+      190: LOAD VB13 DRONE2 SALERNO
+      191: MOVE DRONE2 SALERNO PALINURO
+      192: UNLOAD VB13 DRONE2 PALINURO SALERNO
+
+time spent:    1.30 seconds instantiating 51 easy, 5566 hard action templates
+               0.00 seconds reachability analysis, yielding 943 facts and 1340 actions
+               0.01 seconds creating final representation with 799 relevant facts, 8 relevant fluents
+               0.00 seconds computing LNF
+               0.00 seconds building connectivity graph
+            5403.25 seconds searching, evaluating 4681682 states, to a max depth of 13
+            5404.56 seconds total time

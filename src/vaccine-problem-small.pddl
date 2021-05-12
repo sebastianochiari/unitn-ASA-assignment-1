@@ -7,13 +7,17 @@
   ; Objects are candidates to replace free variables
   (:objects
     ; central point
-    cp
+    ROMA
     ; regional points
-    rp1 rp2 rp3
+    roma1 napoli cagliari
     ; provincial point
-    pp1 pp2 pp3 pp4 pp5
+    latina frosinone
+    caserta avellino salerno
+    oristano nuoro
     ; health districts
-    hd1 hd2 hd3 hd4 hd5 hd6 hd7 hd8 hd9 hd10
+    aprilia terracina fondi ceccano cassino
+    mondragone aversa taurasi andretta solofra battipaglia palinuro
+    cabras macomer fonni
     ; planes
     plane1
     ; trucks
@@ -21,7 +25,7 @@
     ; drones
     drone1 drone2 drone3
     ; vaccine boxes
-    vb1 vb2 vb3 vb4 vb5 vb6 vb7 vb8 vb9 vb10
+    vb1 vb2 vb3 vb4 vb5 vb6 vb7 vb8 vb9 vb10 vb11 vb12 vb13 vb14 vb15
   )
 
   ; The initial state describe what is currently true
@@ -29,103 +33,132 @@
   (:init
     ; TOPOGRAPHY
     ; central point
-    (location cp)
-    (isCDP cp)
+    (location ROMA)
+    (isCDP ROMA)
     ; regional points
-    (location rp1) (location rp2) (location rp3)
-    (isRDC rp1) (isRDC rp2) (isRDC rp3)
+    (location roma1) (isRDC roma1)
+    (location napoli) (isRDC napoli)
+    (location cagliari) (isRDC cagliari)
     ; provincial point
-    (location pp1) (location pp2) (location pp3) (location pp4) (location pp5)
-    (isPDC pp1) (isPDC pp2) (isPDC pp3) (isPDC pp4) (isPDC pp5)
+    (location oristano) (location nuoro)
+    (isPDC oristano) (isPDC nuoro)
+    (location latina) (location frosinone)
+    (isPDC latina) (isPDC frosinone)
+    (location caserta) (location avellino) (location salerno)
+    (isPDC caserta) (isPDC avellino) (isPDC salerno)
     ; health districts
-    (location hd1) (location hd2) (location hd3) (location hd4)
-    (location hd5) (location hd6) (location hd7) (location hd8)
-    (location hd9) (location hd10)
-    (isHDDC hd1) (isHDDC hd2) (isHDDC hd3) (isHDDC hd4)
-    (isHDDC hd5) (isHDDC hd6) (isHDDC hd7) (isHDDC hd8)
-    (isHDDC hd9) (isHDDC hd10)
+    (location aprilia) (location terracina) (location fondi) (location ceccano) (location cassino)
+    (isHDDC aprilia) (isHDDC terracina) (isHDDC fondi) (isHDDC ceccano) (isHDDC cassino)
+    (location mondragone) (location aversa) (location taurasi) (location andretta) (location solofra) (location battipaglia) (location palinuro)
+    (isHDDC mondragone) (isHDDC aversa) (isHDDC taurasi) (isHDDC andretta) (isHDDC solofra) (isHDDC battipaglia) (isHDDC palinuro)
+    (location cabras) (location macomer) (location fonni)
+    (isHDDC cabras) (isHDDC macomer) (isHDDC fonni)
 
     ; LINKS
-    (link rp1 cp) (link rp2 cp) (link rp3 cp)
-    (link pp1 rp1) (link pp2 rp1)
-    (link pp3 rp2) (link pp4 rp2)
-    (link pp5 rp3)
-    (link hd1 pp1) (link hd2 pp1) (link hd3 pp2)
-    (link hd4 pp3)
-    (link hd5 pp4) (link hd6 pp4) (link hd7 pp4)
-    (link hd8 pp5) (link hd9 pp5) (link hd10 pp5)
-    
+    ; central to region
+    (link roma1 ROMA) (link napoli ROMA) (link cagliari ROMA)
+    ; region to province
+    (link latina roma1) (link frosinone roma1)
+    (link caserta napoli) (link avellino napoli) (link salerno napoli)
+    (link oristano cagliari) (link nuoro cagliari)
+    ; province to hd
+    (link aprilia latina) (link terracina latina) (link fondi latina)
+    (link ceccano frosinone) (link cassino frosinone)
+    (link mondragone caserta) (link aversa caserta)
+    (link taurasi avellino) (link andretta avellino) (link solofra avellino)
+    (link battipaglia salerno) (link palinuro salerno)
+    (link cabras oristano)
+    (link macomer nuoro) (link fonni nuoro)
+
     ; CONNECTIONS
     ; from central point to regional points
-    (connected cp rp2) (connected rp2 cp)
-    (connected cp pp5) (connected pp5 cp)
+    (connected ROMA roma1) (connected roma1 ROMA)
     ; from regional points to provincial points
-    (connected rp1 pp1) (connected pp1 rp1)
-    (connected rp1 pp2) (connected pp2 rp1)
-    (connected rp2 pp3) (connected pp3 rp2)
-    (connected rp2 pp4) (connected pp4 rp2)
-    (connected rp3 pp5) (connected pp5 rp3)
+    (connected roma1 latina) (connected latina roma1)
+    (connected roma1 frosinone) (connected frosinone roma1)
+    (connected napoli caserta) (connected caserta napoli)
+    (connected napoli avellino) (connected avellino napoli)
+    (connected napoli salerno) (connected salerno napoli)
+    (connected cagliari oristano) (connected oristano cagliari)
     ; from provincial points to health districts
-    (connected pp1 hd1) (connected hd1 pp1)
-    (connected pp1 hd2) (connected hd2 pp1)
-    (connected pp2 hd3) (connected hd3 pp2)
-    (connected pp3 hd4) (connected hd4 pp3)
-    (connected pp4 hd5) (connected hd5 pp4)
-    (connected pp4 hd6) (connected hd6 pp4)
-    (connected pp4 hd7) (connected hd7 pp4)
-    (connected pp5 hd8) (connected hd8 pp5)
-    (connected pp5 hd9) (connected hd9 pp5)
-    (connected pp5 hd10) (connected hd10 pp5)
-    ; inter-regional connections
-    (connected rp2 rp3) (connected rp3 rp2)
-    ; inter-provincial connections
-    (connected pp1 pp2) (connected pp2 pp1)
-    (connected pp3 pp4) (connected pp4 pp3)
+    (connected latina aprilia) (connected aprilia latina)
+    (connected latina terracina) (connected terracina latina)
+    (connected latina fondi) (connected fondi latina)
+    (connected frosinone ceccano) (connected ceccano frosinone)
+    (connected frosinone cassino) (connected cassino frosinone)
+    (connected caserta mondragone) (connected mondragone caserta)
+    (connected caserta aversa) (connected aversa caserta)
+    (connected avellino taurasi) (connected taurasi avellino)
+    (connected avellino andretta) (connected andretta avellino)
+    (connected avellino solofra) (connected solofra avellino)
+    (connected salerno battipaglia) (connected battipaglia salerno)
+    (connected salerno palinuro) (connected palinuro salerno)
+    (connected oristano cabras) (connected cabras oristano)
+    (connected nuoro macomer) (connected macomer nuoro)
+    (connected nuoro fonni) (connected fonni nuoro)
+    ; regional connections
+    (connected roma1 napoli) (connected napoli roma1)
+    ; provincial connections
+    (connected frosinone latina) (connected latina frosinone)
+    (connected caserta avellino) (connected avellino caserta)
+    (connected oristano nuoro) (connected nuoro oristano)
+    ; more
+    (connected frosinone caserta) (connected caserta frosinone)
 
     ; TRANPORT MEANS
     ; airports
-    (hasAirport cp) (hasAirport rp1)
+    (hasAirport ROMA) (hasAirport cagliari)
     ; planes
     (transport plane1)
-    (plane plane1) (at plane1 cp) (= (capacity plane1) 0)
+    (plane plane1) (at plane1 ROMA) (= (capacity plane1) 0)
     ; trucks
     (transport truck1) (transport truck2) (transport truck3)
-    (truck truck1) (at truck1 rp1) (= (capacity truck1) 0)
-    (truck truck2) (at truck2 rp2) (= (capacity truck2) 0)
-    (truck truck3) (at truck3 cp) (= (capacity truck3) 0)
+    (truck truck1) (at truck1 ROMA) (= (capacity truck1) 0)
+    (truck truck2) (at truck2 napoli) (= (capacity truck2) 0)
+    (truck truck3) (at truck3 cagliari) (= (capacity truck3) 0)
     ; drones
     (transport drone1) (transport drone2) (transport drone3)
-    (drone drone1) (at drone1 pp1) (= (capacity drone1) 0)
-    (drone drone2) (at drone2 pp4) (= (capacity drone2) 0)
-    (drone drone3) (at drone3 pp5) (= (capacity drone3) 0)
+    (drone drone1) (at drone1 latina)
+    (drone drone2) (at drone2 caserta)
+    (drone drone3) (at drone3 nuoro)
 
     ; VACCINE BOXES
     ; vaccine boxes
     (vaccineBox vb1) (vaccineBox vb2) (vaccineBox vb3)
     (vaccineBox vb4) (vaccineBox vb5) (vaccineBox vb6)
     (vaccineBox vb7) (vaccineBox vb8) (vaccineBox vb9)
-    (vaccineBox vb10)
+    (vaccineBox vb10) (vaccineBox vb11) (vaccineBox vb12)
+    (vaccineBox vb13) (vaccineBox vb14) (vaccineBox vb15)
     ; where
-    (at vb1 cp) (at vb2 cp) (at vb3 cp) (at vb4 cp) (at vb5 cp)
-    (at vb6 cp) (at vb7 cp) (at vb8 cp) (at vb9 cp) (at vb10 cp)
+    (at vb1 ROMA) (at vb2 ROMA) (at vb3 ROMA) (at vb4 ROMA) (at vb5 ROMA)
+    (at vb6 ROMA) (at vb7 ROMA) (at vb8 ROMA) (at vb9 ROMA) (at vb10 ROMA)
+    (at vb11 ROMA) (at vb12 ROMA) (at vb13 ROMA) (at vb14 ROMA) (at vb15 ROMA)
     ; constrains
-    (reachCDP vb1 cp) (reachCDP vb2 cp) (reachCDP vb3 cp)
-    (reachCDP vb4 cp) (reachCDP vb5 cp) (reachCDP vb6 cp)
-    (reachCDP vb7 cp) (reachCDP vb8 cp) (reachCDP vb9 cp)
-    (reachCDP vb10 cp)
-  )
+    (reachCDP vb1 ROMA) (reachCDP vb2 ROMA) (reachCDP vb3 ROMA)
+    (reachCDP vb4 ROMA) (reachCDP vb5 ROMA) (reachCDP vb6 ROMA)
+    (reachCDP vb7 ROMA) (reachCDP vb8 ROMA) (reachCDP vb9 ROMA)
+    (reachCDP vb10 ROMA) (reachCDP vb11 ROMA) (reachCDP vb12 ROMA)
+    (reachCDP vb13 ROMA) (reachCDP vb14 ROMA) (reachCDP vb15 ROMA)
 
-  ; The goal state describe what we desire to achieve
+    )
+
+    ; The goal state describe what we desire to achieve
   (:goal (and
-    (hasVaccineBox hd1)
-    (hasVaccineBox hd2)
-    (hasVaccineBox hd3)
-    (hasVaccineBox hd4)
-    (hasVaccineBox hd5)
-    (hasVaccineBox hd6)
-    (hasVaccineBox hd7)
-    (hasVaccineBox hd8)
-    (hasVaccineBox hd9)
-    (hasVaccineBox hd10)
+    (hasVaccineBox aprilia)
+    (hasVaccineBox terracina)
+    (hasVaccineBox fondi)
+    (hasVaccineBox ceccano)
+    (hasVaccineBox cassino)
+    (hasVaccineBox mondragone)
+    (hasVaccineBox aversa)
+    (hasVaccineBox taurasi)
+    (hasVaccineBox andretta)
+    (hasVaccineBox solofra)
+    (hasVaccineBox battipaglia)
+    (hasVaccineBox palinuro)
+    (hasVaccineBox macomer)
+    (hasVaccineBox fonni)
+    (hasVaccineBox cabras)
   ))
+
 )

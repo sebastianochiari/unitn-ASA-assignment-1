@@ -5,11 +5,11 @@
 
   ; what the planner must support to execute this domain
   (:requirements
-    :strips                 ; basic preconditions and effects
-    :negative-preconditions ; to use not in preconditions
-    :equality               ; to use = in preconditions
-    :disjunctive-preconditions ; to use or in preconditions
-    :adl ; to use when in effects
+    :strips                     ; basic preconditions and effects
+    :negative-preconditions     ; to use not in preconditions
+    :equality                   ; to use = in preconditions
+    :disjunctive-preconditions  ; to use or in preconditions
+    :conditional-effects        ; to use when in effect
   )
 
   ; Define the relations
@@ -37,6 +37,7 @@
     (plane ?t) ; transport mean ?t is a plane
     (truck ?t) ; transport mean ?t is a truck
     (drone ?t) ; transport mean ?t is a drone
+    (droneLoaded ?drone) ; drone ?drone is loaded with a vaccine box
     (at ?what ?where) ; object ?w is at location ?l
     (in ?what ?where) ; object ?w is in the transport mean ?t
     (capacity ?transport ?amount)
@@ -60,13 +61,15 @@
         (or
           (and (plane ?transport) (< (capacity ?transport) 20))
           (and (truck ?transport) (< (capacity ?transport) 10))
-          (and (drone ?transport) (< (capacity ?transport) 1))
+          (and (drone ?transport) (not (droneLoaded ?transport)))
         )
     )
     :effect (and
         (not (at ?vaccineBox ?location))
         (in ?vaccineBox ?transport)
-        (increase (capacity ?transport) 1)
+        (when (plane ?transport) (increase (capacity ?transport) 1))
+        (when (truck ?transport) (increase (capacity ?transport) 1))
+        (when (drone ?transport) (droneLoaded ?transport))
     )
   )
 
@@ -80,7 +83,11 @@
         (location ?sourceLocation)
         (in ?vaccineBox ?transport)
         (at ?transport ?currentLocation)
-        (> (capacity ?transport) 0)
+        (or
+            (and (plane ?transport) (> (capacity ?transport) 0))
+            (and (truck ?transport) (> (capacity ?transport) 0))
+            (and (drone ?transport) (droneLoaded ?transport))
+        )
         (or
           (and (isHDDC ?currentLocation) (not (reachHDDC ?vaccineBox)) (reachPDC ?vaccineBox ?sourceLocation) (link ?currentLocation ?sourceLocation))
           (and (isPDC ?currentLocation) (not (getToPDC ?vaccineBox)) (reachRDC ?vaccineBox ?sourceLocation) (link ?currentLocation ?sourceLocation))
@@ -90,7 +97,9 @@
       :effect (and
         (not (in ?vaccineBox ?transport))
         (at ?vaccineBox ?currentLocation)
-        (decrease (capacity ?transport) 1)
+        (when (plane ?transport) (decrease (capacity ?transport) 1))
+        (when (truck ?transport) (decrease (capacity ?transport) 1))
+        (when (drone ?transport) (not (droneLoaded ?transport)))
         (when (isHDDC ?currentLocation) (and (reachHDDC ?vaccineBox) (hasVaccineBox ?currentLocation)))
         (when (isPDC ?currentLocation) (and (reachPDC ?vaccineBox ?currentLocation) (getToPDC ?vaccineBox)))
         (when (isRDC ?currentLocation) (and (reachRDC ?vaccineBox ?currentLocation) (getToRDC ?vaccineBox)))
@@ -140,7 +149,7 @@
         (link ?pointA ?region)
         (link ?pointB ?region)
         (at ?drone ?pointA)
-        (= (capacity ?drone) 0)
+        (not (droneLoaded ?drone))
       )
       :effect (and
         (not (at ?drone ?pointA))

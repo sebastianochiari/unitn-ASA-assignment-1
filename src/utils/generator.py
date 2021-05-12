@@ -5,23 +5,23 @@ THREETABS = '\t\t\t'
 FOURTABS = '\t\t\t\t'
 FIVETABS = '\t\t\t\t\t'
 
-# PROBLEM = 'full'
-PROBLEM = 'small'
+PROBLEM = 'full'
+# PROBLEM = 'small'
 
 CENTRALPOINT = 'ROMA'
 
 if (PROBLEM == 'small'):
     NPLANES = 3
-    NTRUCKS = 5
-    NDRONES = 18
-    NVACCINEBOXES = 103
-    FOLDER = './small'
+    NTRUCKS = 4
+    NDRONES = 9
+    NVACCINEBOXES = 25
+    FOLDER = './small/'
 elif (PROBLEM == 'full'):
     NPLANES = 10
     NTRUCKS = 22
     NDRONES = 78
     NVACCINEBOXES = 412
-    FOLDER = './full\'
+    FOLDER = './full/'
 
 def read_file(file_to_read):
     return [line.strip().split() for line in open(file_to_read, 'r')]
@@ -130,7 +130,7 @@ def generate_links(file_to_write, reg, prov, hd):
 
 def generate_connections(file_to_write, reg, prov, hd):
     file_to_write.write('\n' + TWOTABS + '; CONNECTIONS\n')
-    for line in open('connections.txt', 'r'):
+    for line in open(FOLDER + 'connections.txt', 'r'):
         file_to_write.write(TWOTABS + line)
     counterHD = 0
     counterPV = 0
@@ -212,7 +212,7 @@ def generate_drones(file_to_write, prov, hd, drones_file):
                 rnd1 = random.randint(counterPV, nprov + counterPV - 1)
                 rnd2 = random.randint(0, len(hd[rnd1]) - 1)
                 tmp += '(at drone' + str(ndrones) + ' ' + str((hd[rnd1])[rnd2]) + ') '
-            tmp += '(= (capacity drone' + str(ndrones) + ') 0)\n'
+            tmp += '\n'
             file_to_write.write(TWOTABS + tmp)
             ndrones += 1
         counterPV += len(prov[counterRG])
@@ -260,19 +260,19 @@ def main():
     log = open(FOLDER + 'problem.pddl', 'w')
 
     write_header(log)
-    # write_objects_header(log)
-    # generate_objects(log, regions, provinces, health_districts)
-    # write_init_header(log)
-    # generate_locations(log, regions, provinces, health_districts)
-    # generate_links(log, regions, provinces, health_districts)
-    # generate_connections(log, regions, provinces, health_districts)
-    # generate_transport_means_header(log)
-    # generate_airports(log, airports)
-    # generate_trucks(log, airports)
-    # generate_drones(log, provinces, health_districts, drones)
-    # generate_vaccineboxes(log)
-    # generate_goal_header(log)
-    # generate_goal(log, health_districts)
+    write_objects_header(log)
+    generate_objects(log, regions, provinces, health_districts)
+    write_init_header(log)
+    generate_locations(log, regions, provinces, health_districts)
+    generate_links(log, regions, provinces, health_districts)
+    generate_connections(log, regions, provinces, health_districts)
+    generate_transport_means_header(log)
+    generate_airports(log, airports)
+    generate_trucks(log, airports)
+    generate_drones(log, provinces, health_districts, drones)
+    generate_vaccineboxes(log)
+    generate_goal_header(log)
+    generate_goal(log, health_districts)
     log.close()
 
 if __name__ == "__main__":
