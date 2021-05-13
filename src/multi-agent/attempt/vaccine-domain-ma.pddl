@@ -1,136 +1,148 @@
 ; Domain description
 ; Describe the relations and transitions that can occur
-; small single agent PDDL domain transposed into a multi-agent domain
-(define (domain vaccine-distribution-ma)
+; multi agent national vaccine distribution domain 
+; THIS DOMAIN DOES NOT WORK WITH MAPLAN due to non supported requirements 
+(define (domain vaccine-distribution-ma) ; Domain name must match problem's
+    ; what the planner must support to execute this domain
+    (:requirements
+        :strips
+        :typing
+        :negative-preconditions     ; to use not in preconditions
+        :equality                   ; to use = in preconditions
+        :disjunctive-preconditions  ; to use or in preconditions
+        :conditional-effects        ; to use when in effect
+        :multi-agent
+        :unfactored-privacy
+    )
 
-  (:requirements
-    :strips
-    :typing
-    :multi-agent
-    :unfactored-privacy
-  )
+    (:types
+        location agent vaccineBox - object
+        plane truck drone - agent
+    )
 
-  (:types
-    location agent - object
-    transport vaccineBox - agent
-  )
+    ; Define the relations
+    (:predicates
+        ; location management
+        (isCDP ?location - location)
+        (isRDC ?location - location)
+        (isPDC ?location - location)
+        (isHDDC ?location - location)
+        (link ?low - location ?high - location)
+        (connected ?l1 - location ?l2 - location)
+        (hasVaccineBox ?hddc - location)
+        (hasAirport ?l - location)
+        ; logistic vaccine box predicates
+        (reachCDP ?vb - vaccineBox ?cdp - location)
+        (getToRDC ?vb - vaccineBox)
+        (reachRDC ?vb - vaccineBox ?rdc - location)
+        (getToPDC ?vb - vaccineBox)
+        (reachPDC ?vb - vaccineBox ?pdc - location)
+        (reachHDDC ?vb - vaccineBox)
+        ; transport logistic
+        (loaded ?transport - agent)
+        (at ?what - agent ?where - location)
+        (atVB ?what - vaccineBox ?where - location)
+        (in ?vb - vaccineBox ?where - agent)
+    )
 
-  ; Define the relations
-  (:predicates
+    (:action flyPlane
+        :agent ?plane - plane
+        :parameters (?from - location ?to - location)
+        :precondition (and
+            (at ?plane ?from)
+            (hasAirport ?from)
+            (hasAirport ?to)
+        )
+        :effect (and
+            (not (at ?plane ?from))
+            (at ?plane ?to)
+        )
+    )
 
-    (isCP ?location - location)
-    (isRP ?location - location)
-    (isPP ?location - location)
-    (isHD ?location - location)
+    (:action drive
+        :agent ?truck - truck
+        :parameters (?from - location ?to - location)
+        :precondition (and
+            (at ?truck ?from)
+            (connected ?from ?to)
+            (not (isHDDC ?to))
+        )
+        :effect (and
+            (not (at ?truck ?from))
+            (at ?truck ?to)
+        )
+    )
 
-    (connected ?l1 - location ?l2 - location)
-    (hasAirport ?location - location)
-    (hasVaccineBox ?location - location)
-    
-    (at ?agent - agent ?where - location)
-    (in ?vaccineBox - vaccineBox ?where - agent)
-    
-    (loaded ?transport - transport)
-    (plane ?transport - transport)
-    (truck ?transport - transport)
-    (drone ?transport - transport)
-  )
+    (:action flyDrone
+        :agent ?drone - drone
+        :parameters (?from - location ?to - location)
+        :precondition (and
+            (at ?drone ?from)
+            (connected ?from ?to)
+            (or
+                (and (isPDC ?from) (isHDDC ?to))
+                (and (isHDDC ?from) (isPDC ?to))
+            )
+        )
+        :effect (and
+            (not (at ?drone ?from))
+            (at ?drone ?to)
+        )
+    )
 
-  (:action flyPlane
-    :agent ?transport - transport
-    :parameters (?from - location ?to - location)
-    :precondition (and
-      (plane ?transport)
-      (at ?transport ?from)
-      (hasAirport ?from)
-      (hasAirport ?to)
+    (:action relocateDrone
+        :agent ?drone - drone
+        :parameters (?pointA - location ?pointB - location ?region - location)
+        :precondition (and
+            (isPDC ?pointA)
+            (isPDC ?pointB)
+            (link ?pointA ?region)
+            (link ?pointB ?region)
+            (at ?drone ?pointA)
+            (not (loaded ?drone))
+        )
+        :effect (and 
+            (not (at ?drone ?pointA))
+            (at ?drone ?pointB)
+        )
     )
-    :effect (and
-      (not (at ?transport ?from))
-      (at ?transport ?to)
-    )
-  )
 
-  (:action drive
-    :agent ?truck - transport
-    :parameters (?from - location ?to - location)
-    :precondition (and
-      (truck ?truck)
-      (at ?truck ?from)
-      (connected ?from ?to)
-      (not (isHD ?to))
+    (:action load
+        :agent ?transport - agent
+        :parameters (?vaccineBox - vaccineBox ?location - location)
+        :precondition (and 
+            (atVB ?vaccineBox ?location)
+            (at ?transport ?location)
+            (not (loaded ?transport))
+        )
+        :effect (and 
+            (not (atVB ?vaccineBox ?location))
+            (in ?vaccineBox ?transport)
+            (loaded ?transport)
+        )
     )
-    :effect (and
-      (not (at ?truck ?from))
-      (at ?truck ?to)
-    )
-  )
 
-  (:action flyDrone
-    :agent ?drone - transport
-    :parameters (?from - location ?to - location)
-    :precondition (and
-      (drone ?drone)
-      (at ?drone ?from)
-      (connected ?from ?to)
-      (or
-        (and (isHD ?from) (isPP ?to))
-        (and (isPP ?from) (isHD ?to))
-      )
+    (:action unload
+        :agent ?transport - agent
+        :parameters (?vaccineBox - vaccineBox ?currentLocation - location ?sourceLocation - location)
+        :precondition (and
+            (in ?vaccineBox ?transport)
+            (at ?transport ?currentLocation)
+            (loaded ?transport)
+            (or
+                (and (isHDDC ?currentLocation) (not (reachHDDC ?vaccineBox)) (reachPDC ?vaccineBox ?sourceLocation) (link ?currentLocation ?sourceLocation))
+                (and (isPDC ?currentLocation) (not (getToPDC ?vaccineBox)) (reachRDC ?vaccineBox ?sourceLocation) (link ?currentLocation ?sourceLocation))
+                (and (isRDC ?currentLocation) (not (getToRDC ?vaccineBox)) (reachCDP ?vaccineBox ?sourceLocation) (link ?currentLocation ?sourceLocation))
+            )
+        )
+        :effect (and
+            (not (in ?vaccineBox ?transport))
+            (atVB ?vaccineBox ?currentLocation)
+            (not (loaded ?transport))
+            (when (isHDDC ?currentLocation) (and (reachHDDC ?vaccineBox) (hasVaccineBox ?currentLocation)))
+            (when (isPDC ?currentLocation) (and (reachPDC ?vaccineBox ?currentLocation) (getToPDC ?vaccineBox)))
+            (when (isRDC ?currentLocation) (and (reachRDC ?vaccineBox ?currentLocation) (getToRDC ?vaccineBox)))
+        )
     )
-    :effect (and
-      (not (at ?drone ?from))
-      (at ?drone ?to)
-    )
-  )
-  
-
-  (:action load
-    :agent ?vaccineBox - vaccineBox
-    :parameters (?transport - transport ?location - location)
-    :precondition (and
-      (at ?transport ?location)
-      (at ?vaccineBox ?location)
-      (not (isHD ?location))
-      (not (loaded ?transport))
-    )
-    :effect (and
-      (not (at ?vaccineBox ?location))
-      (in ?vaccineBox ?transport)
-      (loaded ?transport)
-    )
-  )
-
-  (:action unload
-    :agent ?vaccineBox - vaccineBox
-    :parameters (?transport - transport ?location - location)
-    :precondition (and
-      (in ?vaccineBox ?transport)
-      (at ?transport ?location)
-      (not (isHD ?location))
-    )
-    :effect (and
-      (not (in ?vaccineBox ?transport))
-      (not (loaded ?transport))
-      (at ?vaccineBox ?location)
-    )
-  )
-
-  (:action unloadHD
-    :agent ?vaccineBox - vaccineBox
-    :parameters (?transport - transport ?location - location)
-    :precondition (and
-      (in ?vaccineBox ?transport)
-      (at ?transport ?location)
-      (isHD ?location)
-    )
-    :effect (and
-      (not (in ?vaccineBox ?transport))
-      (not (loaded ?transport))
-      (at ?vaccineBox ?location)
-      (hasVaccineBox ?location)
-    )
-  )
-  
 
 )

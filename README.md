@@ -5,7 +5,9 @@ First assignment for the *Autonomous Software Agents* course @ UNITN.
 
 ### ⚙️ Tools
 
-- [MetricFF](https://fai.cs.uni-saarland.de/hoffmann/metric-ff.html), **local planner** on the provided Virtual Machine
+- [MetricFF](https://fai.cs.uni-saarland.de/hoffmann/metric-ff.html), **local planner** on the provided Virtual Machine for the single agent version
+- [Maplan](https://gitlab.com/danfis/maplan), **local planner** on the provided Virtual Machine for the multi-agent version
+    > Maplan doesn't support plenty of libraries useful to solve the problem (such as `:conditional-effects` or `:fluents`)
 - [PDDL Editor](http://editor.planning.domains/), **online planner** (works only with very small problems due to a server-side resource contrainsts)
 
 ### 🔧 How to use
@@ -35,3 +37,9 @@ The full problem, satisfying all the contrainsts given with the assignment guide
 > 1 central point, 15 regions, 113 provinces, 412 health districts, 21 airports, 10 planes, 22 trucks, 78 drones, 412 vaccine boxes
 
 The full problem is generated via `generator.py`, a Python script, and some additional `.txt` containing all the necessary information to build the complete problem: all the files can be found in the `src/utils/` folder.
+
+### 📝 Multi agent
+Two possible implementation for the MA-PDDL can be found in the `src/multi-agent/` folder:
+
+- the `working` folder contains the biggest version of the implementation that the planner is able to solve.
+- the `attempt` folder contains the full theoretical MA-PDDL version (not working because of maplan limitations)
