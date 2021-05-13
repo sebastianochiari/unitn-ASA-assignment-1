@@ -1,6 +1,6 @@
 ; Domain description
 ; Describe the relations and transitions that can occur
-; This one describes the Tower of Hanoi puzzle
+; national vaccine distribution domain
 (define (domain vaccine-distribution) ; Domain name must match problem's
 
   ; what the planner must support to execute this domain
@@ -10,12 +10,13 @@
     :equality                   ; to use = in preconditions
     :disjunctive-preconditions  ; to use or in preconditions
     :conditional-effects        ; to use when in effect
+    :fluents                    ; to use capacity functions for means of transport
   )
 
   ; Define the relations
   (:predicates
     ; location management
-    (location ?l) ; ?l is location
+    (location ?l) ; object ?l is a location
     (isCDP ?l) ; location ?l is the Central Distribution Point for the State
     (isRDC ?l) ; location ?l is the Regional Distribution Centre
     (isPDC ?l) ; location ?l is the Provincial Distribution Centre
@@ -25,7 +26,7 @@
     (hasVaccineBox ?l) ; HDDC ?l received a vaccine box
     (hasAirport ?l) ; location ?l has an airport
     ; logistic vaccine box predicates
-    (vaccineBox ?x)
+    (vaccineBox ?x) ; object ?x is a vaccine box
     (reachCDP ?x ?l) ; vaccine box ?x reaches the Central Distribution Point in location ?l
     (getToRDC ?x) ; vaccine box ?x reaches the Regional Distribution Centre
     (reachRDC ?x ?l) ; vaccine box ?x reaches the Regional Distribution Centre in location ?l
@@ -33,21 +34,23 @@
     (reachPDC ?x ?l) ; vaccine box ?x reaches the Provincial Distribution Centre in location ?l
     (reachHDDC ?x) ; vaccine box ?x reaches the Health District Distribution Centre
     ; transport logistic
-    (transport ?t) ; ?t is a transport mean
+    (transport ?t) ; object ?t is a transport mean
     (plane ?t) ; transport mean ?t is a plane
     (truck ?t) ; transport mean ?t is a truck
     (drone ?t) ; transport mean ?t is a drone
     (droneLoaded ?drone) ; drone ?drone is loaded with a vaccine box
     (at ?what ?where) ; object ?w is at location ?l
     (in ?what ?where) ; object ?w is in the transport mean ?t
-    (capacity ?transport ?amount)
+    (capacity ?transport ?amount) ; transport ?transport has the capacity to load ?amount of vaccine boxes
   )
 
   (:functions
+    ; function to enable multiple loads inside a single means of transport
     (capacity ?transport)
   )
 
   ; ACTIONS
+
   ; load a vaccine box inside a transport mean
   (:action load
     :parameters (?vaccineBox ?transport ?location)
@@ -106,10 +109,9 @@
       )
   )
   
-  
   ; move a transport mean from one location to another
-  ; drones are allowed only to move from PDC to HDDC or viceversa
-  ; planes are allowed to move only between locations with airports
+  ;     drones are allowed only to move from PDC to HDDC or viceversa
+  ;     planes are allowed to move only between locations with airports
   (:action move
     :parameters (?transport ?departure ?arrival)
     :precondition (and
@@ -118,9 +120,7 @@
         (location ?arrival)
         (at ?transport ?departure)
         (or 
-          ; transport is a plane
           (and (plane ?transport) (hasAirport ?departure) (hasAirport ?arrival))
-          ; transport is a drone
           (and
             (drone ?transport)
             (connected ?departure ?arrival)
@@ -129,7 +129,6 @@
               (and (isHDDC ?departure) (isPDC ?arrival) )
             )
           )
-          ; transport is a truck
           (and (truck ?transport) (connected ?departure ?arrival) (not (isHDDC ?arrival)))
         )
     )
@@ -139,7 +138,7 @@
     )
   )
   
-  ; move a drone to another province of the same region
+  ; relocate a drone to another province of the same region
   (:action relocateDrone
       :parameters (?drone ?pointA ?pointB ?region)
       :precondition (and

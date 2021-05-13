@@ -142,7 +142,7 @@
 
     )
 
-    ; The goal state describe what we desire to achieve
+  ; The goal state describe what we desire to achieve
   (:goal (and
     (hasVaccineBox aprilia)
     (hasVaccineBox terracina)

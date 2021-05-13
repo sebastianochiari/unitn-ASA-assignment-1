@@ -6,6 +6,11 @@
 
 	; Objects are candidates to replace free variables
 	(:objects
+		; TOPOGRAPHY
+		; central point
+			; regional point
+				; provincial point
+					; health district
 		ROMA
 			roma1
 				frosinone
@@ -549,7 +554,6 @@
 		; TRANSPORT MEANS
 		; planes
 		plane1 plane2 plane3 plane4 plane5 plane6 plane7 plane8 plane9 plane10 
-		
 		; trucks
 		truck1 truck2 truck3 truck4 truck5 truck6 truck7 truck8 truck9 truck10 
 		truck11 truck12 truck13 truck14 truck15 truck16 truck17 truck18 truck19 truck20 
@@ -2328,6 +2332,7 @@
 		(transport truck11) (transport truck12) (transport truck13) (transport truck14) (transport truck15) 
 		(transport truck16) (transport truck17) (transport truck18) (transport truck19) (transport truck20) 
 		(transport truck21) (transport truck22) 
+		
 		; drones
 		(transport drone1) (transport drone2) (transport drone3) (transport drone4) (transport drone5) 
 		(transport drone6) (transport drone7) (transport drone8) (transport drone9) (transport drone10) 
@@ -2380,6 +2385,7 @@
 		(plane plane8) (at plane8 bari1) (= (capacity plane8) 0)
 		(plane plane9) (at plane9 venezia1) (= (capacity plane9) 0)
 		(plane plane10) (at plane10 genova1) (= (capacity plane10) 0)
+		
 		; trucks
 		(truck truck1) (at truck1 ROMA) (= (capacity truck1) 0)
 		(truck truck2) (at truck2 cagliari1) (= (capacity truck2) 0)

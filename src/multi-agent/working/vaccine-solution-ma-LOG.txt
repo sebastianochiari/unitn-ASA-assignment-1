@@ -1,0 +1,283 @@
+./maplan-run.sh location2/domain.pddl location2/problem.pddl 
+/tmp/file5600
+
+*****************
+DOMAIN: vaccine-distribution-ma
+REQUIREMENTS: set(['strips', 'factored-privacy', 'typing'])
+TYPES: {'object': ['location', 'agent'], 'agent': ['transport', 'vaccineBox']}
+TYPE LIST: ['\t', 'location', 'agent', '-', 'object', '\n', '\t', 'transport', 'vaccineBox', '-', 'agent', '\n']
+PREDICATES: [(isCP ?location - location), (isRP ?location - location), (isPP ?location - location), (isHD ?location - location), (connected ?l1 - location ?l2 - location), (hasAirport ?location - location), (hasVaccineBox ?location - location), (at ?agent - agent ?where - location), (in ?vaccineBox - vaccineBox ?where - agent), (loaded ?transport - transport), (plane ?transport - transport), (truck ?transport - transport), (drone ?transport - transport)]
+ACTIONS: [flyPlane, drive, flyDrone, load, unload, unloadHD]
+FUNCTIONS: []
+CONSTANTS: {}
+AGENT TYPES: ['vaccineBox', 'transport']
+****************
+
+*****************
+PROBLEM: dummy-vaccine-distribution-ma
+OBJECTS: {'vaccineBox': ['vb1', 'vb2', 'vb3'], 'location': ['cp', 'rp1', 'rp2', 'pp1', 'pp2', 'hd1', 'hd2', 'hd3'], 'transport': ['p1', 't1', 't2', 'd1', 'd2']}
+INIT: [(isCP cp), (isRP rp1), (isRP rp2), (isPP pp1), (isPP pp2), (isHD hd1), (isHD hd2), (isHD hd3), (connected cp rp2), (connected rp2 cp), (connected rp1 pp1), (connected pp1 rp1), (connected rp2 pp2), (connected pp2 rp2), (connected pp1 hd1), (connected hd1 pp1), (connected pp2 hd2), (connected hd2 pp2), (connected pp2 hd3), (connected hd3 pp2), (hasAirport cp), (hasAirport rp1), (plane p1), (truck t1), (truck t2), (drone d1), (drone d2), (at p1 cp), (at t1 rp1), (at t2 cp), (at d1 pp1), (at d2 hd3), (at vb1 cp), (at vb2 cp), (at vb3 cp)]
+GOAL: [(hasVaccineBox hd1), (hasVaccineBox hd2), (hasVaccineBox hd3)]
+AGENTS: set(['p1', 't2', 't1', 'vb3', 'vb2', 'vb1', 'd2', 'd1'])
+****************
+
+*****************
+PREDICATES: {'public': [(isCP ?location - location), (isRP ?location - location), (isPP ?location - location), (isHD ?location - location), (connected ?l1 - location ?l2 - location), (hasAirport ?location - location), (hasVaccineBox ?location - location), (at ?agent - agent ?where - location), (in ?vaccineBox - vaccineBox ?where - agent), (loaded ?transport - transport), (plane ?transport - transport), (truck ?transport - transport), (drone ?transport - transport)]}
+ACTIONS: {'vaccineBox': [load, unload, unloadHD], 'transport': [flyPlane, drive, flyDrone]}
+OBJECTS: {'public': ['cp', 'rp1', 'rp2', 'pp1', 'pp2', 'hd1', 'hd2', 'hd3', 'p1', 't1', 't2', 'd1', 'd2', 'vb1', 'vb2', 'vb3']}
+****************
+d1: domain-d1.pddl, problem-d1.pddl
+d2: domain-d2.pddl, problem-d2.pddl
+p1: domain-p1.pddl, problem-p1.pddl
+t1: domain-t1.pddl, problem-t1.pddl
+t2: domain-t2.pddl, problem-t2.pddl
+vb1: domain-vb1.pddl, problem-vb1.pddl
+vb2: domain-vb2.pddl, problem-vb2.pddl
+vb3: domain-vb3.pddl, problem-vb3.pddl
+Multi-agent: no
+Proto: ./
+Output: plan
+Max time: 1800 s
+Max mem: 1024 MB
+Progress freq: 10000
+Print heur init: 0
+Dot graph: (null)
+Heur: lm-cut []
+Search: astar []
+
+Loading `.//vb2.proto'...
+Num variables: 32
+Num operators: 72
+Bytes per state: 12
+Size of state id: 4
+Duplicate operators removed: 0
+Agent name: Agent6
+Agent ID: 6
+Num agents: 8
+Num projected operators: 301
+Loading `.//d2.proto'...
+Num variables: 32
+Num operators: 17
+Bytes per state: 12
+Size of state id: 4
+Duplicate operators removed: 0
+Agent name: Agent1
+Agent ID: 1
+Num agents: 8
+Num projected operators: 301
+Loading `.//p1.proto'...
+Num variables: 32
+Num operators: 17
+Bytes per state: 12
+Size of state id: 4
+Duplicate operators removed: 0
+Agent name: Agent2
+Agent ID: 2
+Num agents: 8
+Num projected operators: 301
+Loading `.//t1.proto'...
+Num variables: 32
+Num operators: 17
+Bytes per state: 12
+Size of state id: 4
+Duplicate operators removed: 0
+Agent name: Agent3
+Agent ID: 3
+Num agents: 8
+Num projected operators: 301
+Loading `.//vb3.proto'...
+Num variables: 32
+Num operators: 72
+Bytes per state: 12
+Size of state id: 4
+Duplicate operators removed: 0
+Agent name: Agent7
+Agent ID: 7
+Num agents: 8
+Num projected operators: 301
+Loading `.//d1.proto'...
+Num variables: 32
+Num operators: 17
+Bytes per state: 12
+Size of state id: 4
+Duplicate operators removed: 0
+Agent name: Agent0
+Agent ID: 0
+Num agents: 8
+Num projected operators: 301
+Loading `.//vb1.proto'...
+Num variables: 32
+Num operators: 72
+Bytes per state: 12
+Size of state id: 4
+Duplicate operators removed: 0
+Agent name: Agent5
+Agent ID: 5
+Num agents: 8
+Num projected operators: 301
+Loading `.//t2.proto'...
+Num variables: 32
+Num operators: 17
+Bytes per state: 12
+Size of state id: 4
+Duplicate operators removed: 0
+Agent name: Agent4
+Agent ID: 4
+Num agents: 8
+Num projected operators: 301
+
+Loading Time: 0.007277
+
+07:: [1.111 s, 10 MB] 10002 steps, 539 evaluated, 4436 expanded, 611 generated, found: -1
+06:: [1.120 s, 10 MB] 10007 steps, 750 evaluated, 4360 expanded, 855 generated, found: -1
+05:: [1.319 s, 13 MB] 10000 steps, 1524 evaluated, 4837 expanded, 2481 generated, found: -1
+07:: [2.035 s, 14 MB] 20003 steps, 1392 evaluated, 9556 expanded, 1881 generated, found: -1
+06:: [2.040 s, 14 MB] 20007 steps, 1828 evaluated, 9389 expanded, 2282 generated, found: -1
+05:: [2.274 s, 14 MB] 20000 steps, 2434 evaluated, 9237 expanded, 4304 generated, found: -1
+07:: [3.680 s, 21 MB] 30003 steps, 4492 evaluated, 15223 expanded, 5354 generated, found: -1
+06:: [3.809 s, 21 MB] 30007 steps, 5199 evaluated, 15131 expanded, 6138 generated, found: -1
+05:: [4.080 s, 24 MB] 30070 steps, 5927 evaluated, 15250 expanded, 8644 generated, found: -1
+01:: [5.046 s, 26 MB] 10000 steps, 12418 evaluated, 9777 expanded, 12690 generated, found: -1
+03:: [5.054 s, 26 MB] 10000 steps, 12582 evaluated, 9783 expanded, 13011 generated, found: -1
+00:: [5.074 s, 26 MB] 10000 steps, 12017 evaluated, 9789 expanded, 12216 generated, found: -1
+04:: [5.068 s, 26 MB] 10000 steps, 12614 evaluated, 9781 expanded, 13204 generated, found: -1
+02:: [5.070 s, 26 MB] 10000 steps, 12468 evaluated, 9780 expanded, 12798 generated, found: -1
+07:: [5.770 s, 27 MB] 40003 steps, 8472 evaluated, 21632 expanded, 9840 generated, found: -1
+06:: [5.804 s, 27 MB] 40007 steps, 9253 evaluated, 21666 expanded, 10631 generated, found: -1
+05:: [6.561 s, 28 MB] 40070 steps, 10962 evaluated, 22246 expanded, 14492 generated, found: -1
+06:: [7.050 s, 33 MB] 50235 steps, 10806 evaluated, 26560 expanded, 12406 generated, found: -1
+07:: [7.050 s, 33 MB] 50008 steps, 10346 evaluated, 27276 expanded, 11803 generated, found: -1
+05:: [7.770 s, 34 MB] 50070 steps, 13107 evaluated, 27366 expanded, 17283 generated, found: -1
+02:: [9.896 s, 38 MB] 20000 steps, 22454 evaluated, 19179 expanded, 23016 generated, found: -1
+01:: [10.038 s, 38 MB] 20000 steps, 22638 evaluated, 19179 expanded, 23189 generated, found: -1
+04:: [10.051 s, 38 MB] 20000 steps, 22666 evaluated, 19197 expanded, 23508 generated, found: -1
+03:: [10.052 s, 38 MB] 20000 steps, 22672 evaluated, 19196 expanded, 23332 generated, found: -1
+06:: [10.081 s, 38 MB] 60235 steps, 16474 evaluated, 33950 expanded, 19133 generated, found: -1
+00:: [10.131 s, 38 MB] 20000 steps, 21799 evaluated, 19187 expanded, 22190 generated, found: -1
+07:: [10.112 s, 38 MB] 60008 steps, 15899 evaluated, 34758 expanded, 18240 generated, found: -1
+05:: [10.415 s, 43 MB] 60070 steps, 17164 evaluated, 33865 expanded, 21751 generated, found: -1
+07:: [11.452 s, 43 MB] 70008 steps, 18388 evaluated, 40034 expanded, 20938 generated, found: -1
+06:: [11.638 s, 43 MB] 70235 steps, 19276 evaluated, 39328 expanded, 22101 generated, found: -1
+05:: [13.730 s, 44 MB] 70070 steps, 23927 evaluated, 41500 expanded, 29025 generated, found: -1
+07:: [14.364 s, 49 MB] 80008 steps, 23360 evaluated, 47687 expanded, 26067 generated, found: -1
+02:: [14.443 s, 49 MB] 30000 steps, 31156 evaluated, 28520 expanded, 31875 generated, found: -1
+06:: [14.415 s, 49 MB] 80235 steps, 24063 evaluated, 46913 expanded, 26993 generated, found: -1
+01:: [14.462 s, 49 MB] 30000 steps, 31282 evaluated, 28540 expanded, 32002 generated, found: -1
+03:: [14.472 s, 49 MB] 30000 steps, 31125 evaluated, 28505 expanded, 31899 generated, found: -1
+04:: [14.614 s, 49 MB] 30000 steps, 31064 evaluated, 28521 expanded, 32015 generated, found: -1
+00:: [14.640 s, 49 MB] 30000 steps, 30125 evaluated, 28486 expanded, 30619 generated, found: -1
+05:: [14.914 s, 49 MB] 80080 steps, 25352 evaluated, 47246 expanded, 30652 generated, found: -1
+07:: [17.742 s, 54 MB] 90008 steps, 29716 evaluated, 54996 expanded, 32614 generated, found: -1
+06:: [17.986 s, 54 MB] 90235 steps, 30769 evaluated, 54549 expanded, 33859 generated, found: -1
+03:: [18.668 s, 56 MB] 40000 steps, 38954 evaluated, 37954 expanded, 39809 generated, found: -1
+02:: [18.683 s, 56 MB] 40000 steps, 39070 evaluated, 37974 expanded, 39905 generated, found: -1
+04:: [18.778 s, 56 MB] 40000 steps, 38874 evaluated, 37979 expanded, 39890 generated, found: -1
+01:: [18.867 s, 58 MB] 40000 steps, 39062 evaluated, 37996 expanded, 39858 generated, found: -1
+00:: [18.951 s, 61 MB] 40000 steps, 37704 evaluated, 37935 expanded, 38234 generated, found: -1
+05:: [20.232 s, 61 MB] 90080 steps, 35244 evaluated, 56779 expanded, 40658 generated, found: -1
+06:: [21.854 s, 64 MB] 100235 steps, 37924 evaluated, 62329 expanded, 41039 generated, found: -1
+02:: [22.385 s, 64 MB] 50000 steps, 46857 evaluated, 47538 expanded, 47698 generated, found: -1
+01:: [22.503 s, 64 MB] 50000 steps, 46912 evaluated, 47552 expanded, 47714 generated, found: -1
+07:: [22.522 s, 64 MB] 100008 steps, 38531 evaluated, 64367 expanded, 41429 generated, found: -1
+03:: [22.642 s, 65 MB] 50000 steps, 46839 evaluated, 47468 expanded, 47700 generated, found: -1
+04:: [22.696 s, 65 MB] 50000 steps, 46671 evaluated, 47497 expanded, 47693 generated, found: -1
+00:: [22.829 s, 65 MB] 50000 steps, 45514 evaluated, 47420 expanded, 46050 generated, found: -1
+00:: [23.235 s, 66 MB] 51631 steps, 46765 evaluated, 48875 expanded, 47301 generated, found: 1
+04:: [23.228 s, 66 MB] 51785 steps, 48523 evaluated, 49049 expanded, 49545 generated, found: 1
+03:: [23.229 s, 66 MB] 51829 steps, 48779 evaluated, 49050 expanded, 49652 generated, found: 1
+02:: [23.230 s, 66 MB] 52397 steps, 49466 evaluated, 49688 expanded, 50367 generated, found: 1
+01:: [23.230 s, 66 MB] 52069 steps, 49093 evaluated, 49371 expanded, 49895 generated, found: 1
+06:: [23.190 s, 66 MB] 104403 steps, 40790 evaluated, 66245 expanded, 43944 generated, found: 1
+07:: [23.187 s, 66 MB] 102621 steps, 39880 evaluated, 66002 expanded, 42788 generated, found: 1
+05:: [23.229 s, 67 MB] 97797 steps, 41078 evaluated, 62956 expanded, 46506 generated, found: 1
+
+Solution found.
+Plan written to `plan'
+Plan Cost: 27
+Plan Length: 27
+
+Agent[0] stats:
+    Search Time: 23.234995
+    Steps: 51631
+    Evaluated States: 46765
+    Expanded States: 48875
+    Generated States: 47301
+    Peak Memory: 66 kb
+Agent[1] stats:
+    Search Time: 23.230099
+    Steps: 52069
+    Evaluated States: 49093
+    Expanded States: 49371
+    Generated States: 49895
+    Peak Memory: 66 kb
+Agent[2] stats:
+    Search Time: 23.229515
+    Steps: 52397
+    Evaluated States: 49466
+    Expanded States: 49688
+    Generated States: 50367
+    Peak Memory: 66 kb
+Agent[3] stats:
+    Search Time: 23.228987
+    Steps: 51829
+    Evaluated States: 48779
+    Expanded States: 49050
+    Generated States: 49652
+    Peak Memory: 66 kb
+Agent[4] stats:
+    Search Time: 23.228460
+    Steps: 51785
+    Evaluated States: 48523
+    Expanded States: 49049
+    Generated States: 49545
+    Peak Memory: 66 kb
+Agent[5] stats:
+    Search Time: 23.229023
+    Steps: 97797
+    Evaluated States: 41078
+    Expanded States: 62956
+    Generated States: 46506
+    Peak Memory: 67 kb
+Agent[6] stats:
+    Search Time: 23.189934
+    Steps: 104403
+    Evaluated States: 40790
+    Expanded States: 66245
+    Generated States: 43944
+    Peak Memory: 66 kb
+Agent[7] stats:
+    Search Time: 23.187326
+    Steps: 102621
+    Evaluated States: 39880
+    Expanded States: 66002
+    Generated States: 42788
+    Peak Memory: 66 kb
+
+Overall Time: 23.279799
+(load vb1 p1 cp)
+(load vb2 t2 cp)
+(flyplane p1 cp rp1)
+(drive t2 cp rp2)
+(drive t2 rp2 pp2)
+(unload vb1 p1 rp1)
+(load vb1 t1 rp1)
+(unload vb2 t2 pp2)
+(drive t1 rp1 pp1)
+(unload vb1 t1 pp1)
+(load vb1 d1 pp1)
+(flydrone d1 pp1 hd1)
+(unloadhd vb1 d1 hd1)
+(flydrone d2 hd3 pp2)
+(load vb2 d2 pp2)
+(flydrone d2 pp2 hd2)
+(drive t2 pp2 rp2)
+(drive t2 rp2 cp)
+(load vb3 t2 cp)
+(drive t2 cp rp2)
+(drive t2 rp2 pp2)
+(unload vb3 t2 pp2)
+(unloadhd vb2 d2 hd2)
+(flydrone d2 hd2 pp2)
+(load vb3 d2 pp2)
+(flydrone d2 pp2 hd3)
+(unloadhd vb3 d2 hd3)
